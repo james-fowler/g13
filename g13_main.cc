@@ -22,7 +22,7 @@ int main(int argc, char *argv[]) {
 	manager.set_log_level("info");
 
 	// Declare the supported options.
-	po::options_description desc("Allowed options");
+	po::options_description desc("and options can be");
 	desc.add_options()
 	    ("help", "produce help message")
 		;
@@ -35,7 +35,7 @@ int main(int argc, char *argv[]) {
 	add_string_option( "config", "load config commands from file" );
 	add_string_option( "pipe_in", "specify name for input pipe" );
 	add_string_option( "pipe_out", "specify name for output pipe" );
-	add_string_option( "log_level", "logging level" );
+	add_string_option( "log_level", "logging level (trace|debug|info|warning|error|fatal)" );
 	// add_string_option( "logfile", "write log to logfile" );
 
 	po::positional_options_description p;
@@ -46,7 +46,10 @@ int main(int argc, char *argv[]) {
 	po::notify(vm);
 
 	if (vm.count("help")) {
-		cout << argv[0] << " : user space G13 driver" << endl;
+		cout << "g13d, a user space G13 driver" << endl;
+
+		cout << "Usage : " << argv[0] << " options logo_filename" << endl;
+		cout << " where logo_filename is optional ";
 	    cout << desc << "\n";
 	    return 1;
 	}

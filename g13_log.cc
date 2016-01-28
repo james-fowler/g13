@@ -22,7 +22,11 @@ void G13_Manager::set_log_level( ::boost::log::trivial::severity_level lvl ) {
     (
     		::boost::log::trivial::severity >= lvl
     );
-    G13_OUT( "set log level to " << lvl );
+    static int set_count = 0;
+    if( set_count ) {
+    	G13_OUT( "set log level to " << lvl );
+    }
+    set_count++;
 }
 
 void G13_Manager::set_log_level( const std::string &level ) {
